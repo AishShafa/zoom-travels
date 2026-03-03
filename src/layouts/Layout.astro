@@ -1,0 +1,92 @@
+---
+import "../styles/global.css";
+const { title = "Zoom Travels" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+
+    <!-- Alpine.js (for FAQ / small interactions) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+    <body class="antialiased text-slate-900 overflow-x-hidden">
+  <slot />
+
+    <!-- GSAP animations -->
+    <script type="module">
+      import gsap from "gsap";
+      import ScrollTrigger from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Simple reveal animation
+      gsap.utils.toArray("[data-animate]").forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 24,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+        });
+      });
+
+      // Staggered cards
+      gsap.utils.toArray("[data-stagger]").forEach((group) => {
+        const items = group.querySelectorAll("[data-stagger-item]");
+        gsap.from(items, {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          ease: "power2.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: group,
+            start: "top 85%",
+          },
+        });
+      });
+
+      gsap.utils.toArray("[data-scrolly]").forEach((section) => {
+        const bg = section.querySelector("[data-bg]");
+        if (!bg) return;
+
+        gsap.to(bg, {
+          yPercent: 8,
+          scale: 1.04,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    </script>
+<script is:inline>
+  const nav = document.getElementById("zt-navbar");
+  const logo = document.getElementById("zt-logo");
+  const threshold = 60;
+
+  function update() {
+    const scrolled = window.scrollY > threshold;
+    if (nav) nav.classList.toggle("is-scrolled", scrolled);
+
+    // Bigger at top, normal when scrolled (navbar height unchanged)
+    if (logo) {
+      logo.style.height = scrolled ? "64px" : "80px";
+    }
+  }
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+</script>
+  </body>

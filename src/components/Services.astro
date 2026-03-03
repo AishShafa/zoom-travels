@@ -1,0 +1,29 @@
+---
+const services = [
+  { title: "Flight Search", desc: "Compare routes across leading international and regional airlines." },
+  { title: "Exclusive Deals", desc: "Access promotional fares and negotiated airline pricing." },
+  { title: "Flexible Itineraries", desc: "Multi-city and date-flexible booking options." },
+  { title: "Last-Minute Flights", desc: "Quick booking for urgent and time-sensitive travel." },
+  { title: "Simple Checkout", desc: "Fast, clear booking with no hidden charges." },
+  { title: "24/7 Support", desc: "Human assistance for changes, refunds, and travel queries." },
+];
+---
+<section id="services" class="py-28 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-serif text-center mb-16" data-animate>
+      Our Services
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8" data-stagger>
+      {services.map(s => (
+        <div
+          class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm"
+          data-stagger-item
+        >
+          <h3 class="font-semibold text-lg">{s.title}</h3>
+          <p class="mt-3 text-slate-600">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

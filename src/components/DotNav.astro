@@ -1,0 +1,145 @@
+---
+const items = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "reviews", label: "Reviews" },
+  { id: "faq", label: "FAQ" },
+  { id: "contact", label: "Contact" },
+];
+---
+
+<nav
+  aria-label="Section navigation"
+  class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3"
+>
+  {items.map((it) => (
+    <a
+      href={`#${it.id}`}
+      class="zt-dot"
+      data-dot-for={it.id}
+      aria-label={it.label}
+      title={it.label}
+    ></a>
+  ))}
+
+  <style>
+    /* Base dot (inactive) — visible on dark & light backgrounds */
+    .zt-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+
+    /* light blue background so it’s always visible */
+    background: rgba(144, 225, 239, 0.322); /* #90E0EF */
+    border: 1px solid rgba(144, 225, 239, 0.476);
+
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+
+    /* Hover */
+    .zt-dot:hover {
+    transform: scale(1.25);
+    background: rgba(144, 225, 239, 0.38);
+    }
+
+    /* ACTIVE dot — dark blue (logo color) */
+    .zt-dot.is-active {
+    background: #00507A;
+    border-color: #00507A;
+    transform: scale(1.35);
+    }
+
+    /* When on light sections, we’ll switch to dark outlines via JS class on body */
+    body.zt-on-light .zt-dot {
+      border-color: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.08);
+    }
+    body.zt-on-light .zt-dot:hover {
+      background: rgba(0, 0, 0, 0.14);
+    }
+    body.zt-on-light .zt-dot.is-active {
+      background: #00507A;
+      border-color: #00507A;
+    }
+  </style>
+</nav>
+
+<script is:inline>
+  function initDotNav() {
+    const dots = Array.from(document.querySelectorAll(".zt-dot[data-dot-for]"));
+    if (!dots.length) return;
+
+    const sections = dots
+      .map((dot) => {
+        const id = dot.getAttribute("data-dot-for");
+        if (!id) return null;
+        const el = document.getElementById(id);
+        if (!el) return null;
+        return { id, el };
+      })
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const setActive = (id) => {
+      dots.forEach((dot) => {
+        const isActive = dot.getAttribute("data-dot-for") === id;
+        dot.classList.toggle("is-active", isActive);
+        if (isActive) {
+          dot.setAttribute("aria-current", "true");
+        } else {
+          dot.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    let activeId = sections[0].id;
+
+    const updateFromHash = () => {
+      const hashId = window.location.hash.replace("#", "");
+      const exists = sections.some((section) => section.id === hashId);
+      if (hashId && exists) {
+        activeId = hashId;
+        setActive(activeId);
+        return true;
+      }
+      return false;
+    };
+
+    const updateFromScroll = () => {
+      const marker = window.innerHeight * 0.4;
+      let nextId = sections[0].id;
+
+      for (const section of sections) {
+        if (section.el.getBoundingClientRect().top <= marker) {
+          nextId = section.id;
+        }
+      }
+
+      if (nextId !== activeId) {
+        activeId = nextId;
+        setActive(activeId);
+      }
+    };
+
+    if (!updateFromHash()) {
+      setActive(activeId);
+    }
+    updateFromScroll();
+
+    window.addEventListener("scroll", updateFromScroll, { passive: true });
+    window.addEventListener("hashchange", () => {
+      if (!updateFromHash()) updateFromScroll();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDotNav, { once: true });
+  } else {
+    initDotNav();
+  }
+</script>

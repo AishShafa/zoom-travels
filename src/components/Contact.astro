@@ -1,0 +1,89 @@
+<section id="contact" class="py-28">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-serif" data-animate>
+      Ready to book your next flight?
+    </h2>
+
+    <p class="mt-4 text-slate-600" data-animate>
+      Contact us today and we’ll help you find the best option.
+    </p>
+
+    <!-- Social / contact icons -->
+    <div class="mt-10 flex justify-center gap-10" data-animate>
+      <!-- Facebook -->
+      <a
+        href="https://www.facebook.com/emartweligama/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+        class="contact-icon"
+      >
+        <img src="/icons/facebook.svg" alt="Facebook" />
+      </a>
+
+      
+      <!-- WhatsApp -->
+      <a
+        href="https://wa.me/9609781783"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp"
+        class="contact-icon"
+      >
+        <img src="/icons/whatsapp.svg" alt="WhatsApp" />
+      </a>
+
+      <!-- Instagram -->
+      <a
+        href="https://www.instagram.com/zoomtravelsmv/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+        class="contact-icon"
+      >
+        <img src="/icons/instagram.svg" alt="Instagram" />
+      </a>
+
+    <!-- Email -->
+      <a
+        href="mailto:zzoomtravels@outlook.com"
+        aria-label="Email"
+        class="contact-icon"
+      >
+        <img src="/icons/email.png" alt="Email" />
+      </a>
+    </div>
+  </div>
+
+  <style>
+    #contact {
+      position: relative;
+      z-index: 1;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.38)), url('/lady-window.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    /* Icon link (no background, no circle) */
+    .contact-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Icon size = previous circle size */
+    .contact-icon img {
+      width: 48px;
+      height: 48px;
+      display: block;
+    }
+
+    .contact-icon:hover {
+      transform: translateY(-2px);
+      opacity: 0.85;
+    }
+  </style>
+</section>

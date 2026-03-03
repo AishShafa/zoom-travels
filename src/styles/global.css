@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Background + default text tone like your sample */
+body {
+  background: #ffffff;
+  color: rgb(30 41 59); /* slate-800 */
+}
+
+/* Slight headline tightening like sample */
+h1, h2 {
+  letter-spacing: -0.01em;
+}
+
+/* Hide scrollbar but keep scrolling */
+html, body {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge legacy */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0px;                     /* Chrome/Safari */
+  height: 0px;
+}
+
+.cloud-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}

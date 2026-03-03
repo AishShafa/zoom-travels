@@ -1,0 +1,110 @@
+---
+const faqs = [
+  { q: "How does ZoomTravels find cheaper fares?", a: "We compare fares across airlines and sources, then highlight the best-value options. Prices change quickly, so booking early helps." },
+  { q: "Are there any hidden charges?", a: "No. We show the full price before you confirm. Optional extras (baggage, seats) are shown clearly during booking." },
+  { q: "Can I change or cancel my booking?", a: "Yes, depending on the airline’s fare rules. Share your booking details and we’ll guide you through your options." },
+  { q: "How can I contact support?", a: "Reach us via WhatsApp, phone, or email. We can assist with bookings, changes, refunds, and general travel queries." },
+];
+---
+
+<section id="faq" class="bg-white">
+  <div class="mx-auto max-w-6xl px-10 py-24">
+    <h2 class="zt-faq-title">FAQ</h2>
+
+    <div class="mt-10 border-t border-black/25">
+      {faqs.map((item) => (
+        <details class="zt-faq border-b border-black/25">
+          <summary class="zt-faq-summary">
+            <span class="zt-faq-q">{item.q}</span>
+            <span class="zt-faq-icon" aria-hidden="true"></span>
+          </summary>
+
+          <div class="zt-faq-a">
+            <p>{item.a}</p>
+          </div>
+        </details>/* lower faqs text slightly  */
+      ))}
+    </div> 
+  </div>
+
+  <style>
+    /* Remove default disclosure triangle */
+    .zt-faq summary::-webkit-details-marker { display: none; }
+    .zt-faq summary { list-style: none; }
+
+    /* Title matches sample: huge, thin, tight */
+    .zt-faq-title {
+      font-size: 35px;      
+      font-style: oblique;
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight: 550;     
+      letter-spacing: +0.06em;
+      color: #000;
+      margin: 0;
+    }
+
+    /* Row spacing like sample */
+    .zt-faq {
+      padding: 20px 0;      
+    }
+
+    .zt-faq-summary {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Question typography like sample */
+    .zt-faq-q {
+      font-size: 19px;     
+      line-height: 1.2;
+      font-weight: 300;     
+      letter-spacing: +0.05rem;
+      color: #000;
+    }
+
+    /* Plus / X icon */
+    .zt-faq-icon {
+      width: 44px;
+      height: 44px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+    .zt-faq-icon::before,
+    .zt-faq-icon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 22px;
+      height: 2px;
+      background: #000;
+      transform: translate(-50%, -50%);
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .zt-faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    /* Open -> show X (diagonals) like sample */
+    details[open] .zt-faq-icon::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    details[open] .zt-faq-icon::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    /* Answer block */
+    .zt-faq-a {
+      margin-top: 16px;
+      max-width: 820px;
+      color: rgba(0,0,0,0.65);
+      font-size: 14px;      /* was 15px */
+      line-height: 1.85;
+      font-weight: 300;     /* skinnier */
+    }
+  </style>
+</section>

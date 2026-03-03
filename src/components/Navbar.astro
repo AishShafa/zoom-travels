@@ -1,0 +1,78 @@
+<nav
+  id="zt-navbar"
+  class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+>
+  <div class="h-28 w-full px-10">
+    <div class="hidden md:grid h-full grid-cols-[1fr_1fr_1fr_2fr_1fr_1fr_1fr] items-center text-xs tracking-[0.35em] uppercase leading-none">
+      <a href="#home" class="zt-navlink justify-self-center">Home</a>
+      <a href="#about" class="zt-navlink justify-self-center">About Us</a>
+      <a href="#services" class="zt-navlink justify-self-center">Services</a>
+
+      <div class="relative flex items-center justify-center leading-none">
+        <img
+          src="/logo-white.png"
+          alt="ZoomTravels logo white"
+          class="zt-logo zt-logo--white h-20 w-auto object-contain transition-all duration-300"
+        />
+
+        <img
+          src="/logo.png"
+          alt="ZoomTravels logo dark"
+          class="zt-logo zt-logo--dark absolute inset-0 m-auto h-20 w-auto object-contain transition-all duration-300 opacity-0"
+        />
+      </div>
+
+      <a href="#reviews" class="zt-navlink justify-self-center">Reviews</a>
+      <a href="#contact" class="zt-navlink justify-self-center">Contact Us</a>
+      <a href="#faq" class="zt-navlink justify-self-center">FAQ</a>
+    </div>
+
+    <div class="md:hidden h-full flex items-center text-xs tracking-widest uppercase leading-none text-white/90">
+      Menu
+    </div>
+  </div>
+
+  <style>
+    /* TOP state: transparent, no tint, links white */
+    #zt-navbar {
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      backdrop-filter: none;
+    }
+    .zt-navlink {
+      color: rgba(255, 255, 255, 0.82);
+      transition: color 0.2s ease;
+    }
+    .zt-navlink:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    /* SCROLLED state: glass (white blur), links dark */
+    #zt-navbar.is-scrolled {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    #zt-navbar.is-scrolled .zt-navlink {
+      color: rgba(15, 23, 42, 0.70); /* slate-ish */
+    }
+    #zt-navbar.is-scrolled .zt-navlink:hover {
+      color: rgba(15, 23, 42, 1);
+    }
+    /* Logo swap */
+    .zt-logo {
+      pointer-events: none;
+    }
+
+    #zt-navbar.is-scrolled .zt-logo--white {
+      opacity: 0;
+    }
+
+    #zt-navbar.is-scrolled .zt-logo--dark {
+      opacity: 1;
+    }
+    #zt-navbar.is-scrolled .zt-logo {
+  transform: scale(0.92);
+}
+  </style>
+</nav>

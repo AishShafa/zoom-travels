@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import DotNav from "../components/DotNav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Services from "../components/Services.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FAQ from "../components/FAQ.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Zoom Travels">
+  <Navbar />
+  <DotNav />
+
+  <Hero />
+  <div class="relative z-20 -mt-[34vh] bg-white">
+    <About />
+    <Services />
+    <Testimonials />
+    <FAQ />
+    <Contact />
+    <Footer />
+  </div>
+</Layout>

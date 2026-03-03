@@ -1,0 +1,26 @@
+---
+const testimonials = [
+  { name: "Aisha Rahman", text: "Booking was smooth and the support team was very responsive." },
+  { name: "Daniel Lee", text: "Clear pricing and great flight options. Highly recommended." },
+  { name: "Priya Mehta", text: "Simple website, easy checkout, and good airline deals." },
+];
+---
+<section id="reviews" class="py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-serif text-center mb-16" data-animate>
+      What our customers say
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8" data-stagger>
+      {testimonials.map(t => (
+        <div
+          class="bg-white p-8 rounded-3xl border border-slate-200"
+          data-stagger-item
+        >
+          <p class="text-slate-600 leading-relaxed">“{t.text}”</p>
+          <p class="mt-6 font-medium">{t.name}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
