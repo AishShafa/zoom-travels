@@ -1,7 +1,10 @@
 # Zoom Travels
 
 A modern, visually engaging travel website built with **Astro**, **Tailwind CSS**, and **GSAP**. Zoom Travels presents destinations, travel services, testimonials, FAQs, and contact information through an immersive single-page experience. 
-Live Website: zoomtravels.net
+
+
+[Visit My Live Website](https://zoomtravels.net)
+
 
 ## Features
 
